@@ -4,10 +4,10 @@ const bodyParser = require("body-parser")
 const app = express();
 
 // Route import
-const userRoute = require('./APIs/routes/user');
-const studentRoute = require('./APIs/routes/student');
-const facultyRoute = require('./APIs/routes/faculty');
-const productRoute = require('./APIs/routes/product');
+const userRoute = require('./routes/user');
+const studentRoute = require('./routes/student');
+const facultyRoute = require('./routes/faculty');
+const productRoute = require('./routes/product');
 
 // mongoose.connect('mongodb://localhost:27017/myapp');
 mongoose.connect(`mongodb+srv://root:root@cluster0.zw8r4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`)

@@ -74,7 +74,7 @@ router.post('/login', (req, res, next)=>{
                         gender:user[0].gender,
                         role:user[0].role,
                     },
-                    'Dummy key',
+                    "1212125454546463216546",
                     {
                         expiresIn:"1h"   
                     }
@@ -83,6 +83,11 @@ router.post('/login', (req, res, next)=>{
                     token : token
                 })
             }
+        })
+    })
+    .catch(err=>{
+        return res.status(500).json({
+            error:err
         })
     })
 })
