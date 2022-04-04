@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Product = require("../model/product")
 const mongoose = require("mongoose");
+const auth = require("../middleware/auth");
 
 // Get all products
 router.get('/all',(req, res, next)=>{
