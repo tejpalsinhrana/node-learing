@@ -4,7 +4,9 @@ const router = express.Router();
 const User = require("../model/user")
 const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
-var jwt = require('jsonwebtoken');
+const auth = require("../middleware/auth");
+const jwt = require('jsonwebtoken');
+
 
 
 
@@ -97,7 +99,7 @@ router.post('/login', async (req, res, next)=>{
 })
 
 // Get all users
-router.get('/all', (req, res, next)=>{
+router.get('/all', auth, (req, res, next)=>{
     User.find()
     .then(result=>{
         res.status(200).json({
@@ -112,7 +114,7 @@ router.get('/all', (req, res, next)=>{
 })
 
 // Find user by id
-router.get('/find/:id',(req, res, next)=>{
+router.get('/find/:id', auth, (req, res, next)=>{
     User.findById(req.params.id)
     .then(result=>{
         res.status(200).json({
@@ -127,7 +129,7 @@ router.get('/find/:id',(req, res, next)=>{
 })
 
 // Delete user by id 
-router.delete('/delete/:id', (req, res, next)=>{
+router.delete('/delete/:id', auth, (req, res, next)=>{
     id = req.params.id;
     User.remove({_id:id})
     .then(result=>{
@@ -145,7 +147,7 @@ router.delete('/delete/:id', (req, res, next)=>{
 
 
 // Update user
-router.put('/update/:id', (req, res, next)=> {
+router.put('/update/:id', auth, (req, res, next)=> {
     bcrypt.hash(req.body.password, 10, function(err, hash) {
         if(err) {
             return res.status(500).json({
